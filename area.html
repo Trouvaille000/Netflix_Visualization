@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Netflix数据可视化</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud/dist/echarts-wordcloud.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script type="text/javascript" src="js/world.js"></script>
+    <script type="text/javascript" src="js/jquery.liMarquee.js"></script>
+    <script type="text/javascript" src="js/jquery.cxselect.min.js"></script>
+    <script type="text/javascript" src="js/area.js"></script>
+    <link rel="stylesheet" href="css/comon0.css">
+</head>
+
+<body>
+    <div style="background:#000d4a url(img/bg.png) center top;">
+        <div class="back"></div>
+        <div class="head">
+            <div class="weather"><span id="showTime"></span></div>
+            <a href="https://gitee.com/iGaoWei/big-data-view" target="_blank">
+                <h1 id="country-name"></h1>
+            </a>
+        </div>
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000);
+            function time() {
+                clearTimeout(t);
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+                document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日" + h + "时" + m + "分" + s + "秒";
+                t = setTimeout(time, 1000);
+            }
+        </script>
+        <div class="mainbox">
+            <ul class="clearfix">
+                <li>
+                    <div class="boxall" style="height:400px;">
+                        <div class="alltitle">电影和电视剧数量对比</div>
+                        <div class="navboxall" id="chart1"></div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">不同年份添加的内容数量</div>
+                        <div class="navboxall" id="chart2"></div>
+                    </div>
+                    <div class="boxall" style="height:260px;">
+                        <div class="alltitle">电影时长分布</div>
+                        <div class="navboxall" id="chart4"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="boxall" style="height:400px">
+                        <div class="alltitle">不同类型题材分布</div>
+                        <div class="navboxall" id="chart3"></div>
+                    </div>
+                    <div class="boxall" style="height:530px">
+                        <div class="alltitle">词云图</div>
+                        <div class="navboxall" id="chart5"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="boxall" style="height:300px">
+                        <div class="alltitle">不同限制级分布</div>
+                        <div class="navboxall" id="chart6"></div>
+                    </div>
+                    <div class="boxall" style="height: 300px">
+                        <div class="alltitle">不同月份添加的内容数量</div>
+                        <div class="navboxall" id="chart7"></div>
+                    </div>
+                    <div class="boxall" style="height:320px">
+                        <div class="alltitle">电视季数分布</div>
+                        <div class="navboxall" id="chart8"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if ($.fn.liMarquee) {
+                $('.wrap,.adduser').liMarquee({
+                    direction: 'up',
+                    runshort: false,
+                    scrollamount: 20
+                });
+            } else {
+                console.error("liMarquee plugin is not loaded.");
+            }
+        });
+    </script>
+    <script src="js/area.js"></script>
+</body>
+
+</html>
